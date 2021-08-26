@@ -31,17 +31,16 @@ app.get('/', (req, res) => {
 
 
 
-
-//var questionObj = GetData(null);
-//console.log('hoohooo', questionObj);
-//var optionObjArray = GetData(questionObj.id);
 app.get('/question', (req, res) => {
-    res.render('main-page.ejs', {
-        data: {
-            //questionObj: questionObj,
-            // optionObjArray: optionObjArray
-        }
-    });
+
+    GetData(res, 'main-page.ejs', null);
+
+    // res.render('main-page.ejs', {
+    //     data: {
+    //         //questionObj: questionObj,
+    //         // optionObjArray: optionObjArray
+    //     }
+    // });
 
 });
 
@@ -105,9 +104,8 @@ function SaveInitalData() {
 
 }
 
+function GetData(res, page, parent_id) {
 
-function GetData(parent_id) {
-    var result;
     MongoClient.connect(dbUrl, (err, client) => {
 
         if (err) return console.error(err);
@@ -119,15 +117,16 @@ function GetData(parent_id) {
             })
 
             .toArray()
-            .then((result) => {
-                console.log(result[0].context);
+            .then((results) => {
+                res.render(page, {
+                    stepsObj: results
+                });
 
             })
-
-
             .catch((error) => {
                 res.redirect('/');
             });
+
 
 
         // .toArray((err, results) => {
@@ -144,20 +143,6 @@ function GetData(parent_id) {
         // });
 
     })
-
-
-
-
-    // .toArray()
-    // .then((result) => {
-    //     console.log(result.context);
-
-    // });
-
-    // .catch((error) => {
-    //     res.redirect('/');
-    // });
-
 }
 
 function Update() {
