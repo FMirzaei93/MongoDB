@@ -1,0 +1,11 @@
+// ************************* nodemon package explanation **********************
+
+// If you make a change to the server file, you will need to stop node from running and start it again in for it to reflect your changes.
+//There is a package called nodemon that provides the same functionality as node. The big difference is that it will recognize when you have made a code change and will automatically restart the server for you. 
+
+// ************************* Mongoose library Explanation *****************************
+
+// Mongoose is what's known as an ODM, Object Document Mapper. What it really means is that it's a way for us to write javascript inside of our javascript files like express files and that javascript code will interact with our database.
+//It's basically a javascript layer on top of MongoDB and it adds some extra fancy things (special methods that makes it easier on us) in that.
+// Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
+// Object Mapping between Node and MongoDB managed via Mongoose
