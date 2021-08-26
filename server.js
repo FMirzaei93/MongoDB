@@ -30,8 +30,19 @@ app.get('/', (req, res) => {
 });
 
 
+
+
+//var questionObj = GetData(null);
+//console.log('hoohooo', questionObj);
+//var optionObjArray = GetData(questionObj.id);
 app.get('/question', (req, res) => {
-    GetData(res, 'main-page.ejs', null);
+    res.render('main-page.ejs', {
+        data: {
+            //questionObj: questionObj,
+            // optionObjArray: optionObjArray
+        }
+    });
+
 });
 
 
@@ -94,35 +105,59 @@ function SaveInitalData() {
 
 }
 
-function GetData(res, page, parent_id) {
-    MongoClient.connect(dbUrl, {
-        useUnifiedTopology: true
-    }, (err, client) => {
+
+function GetData(parent_id) {
+    var result;
+    MongoClient.connect(dbUrl, (err, client) => {
+
         if (err) return console.error(err);
+
         const db = client.db('Storydb');
         const collection = db.collection('steps');
-        collection
-            .find({
+        collection.find({
                 parent_id: parent_id
             })
+
             .toArray()
-            .then((results) => {
-                res.render(page, {
-                    stepsObj: results
-                });
+            .then((result) => {
+                console.log(result[0].context);
+
             })
+
+
             .catch((error) => {
                 res.redirect('/');
             });
 
+
         // .toArray((err, results) => {
         //     if (err) throw err;
 
-        //     results.forEach((value) => {
-        //         console.log(value.context);
-        //     });
+        //     // result = results;
+        //     // console.log(result[0]);
+        //     // results.forEach((value) => {
+        //     //     //console.log(value.context);
+        //     //     result.push(value)
+        //     // });
+
+
         // });
-    });
+
+    })
+
+
+
+
+    // .toArray()
+    // .then((result) => {
+    //     console.log(result.context);
+
+    // });
+
+    // .catch((error) => {
+    //     res.redirect('/');
+    // });
+
 }
 
 function Update() {

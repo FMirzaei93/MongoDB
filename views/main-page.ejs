@@ -25,21 +25,21 @@
     </nav>
 
 
-        <main style="background-color: red;">
+    <main id="main-page">
 
 
             <div id="container">
     
-                    <p id="question">Question</p>
+                    <p id="question"><%=questionObj[0].context%></p>
     
                     <div>
                         <ul>
-                            <li><a href="">a1</a></li>
+                            <!-- <li><a href="">a1</a></li>
                             <li><a href="">a2</a></li>
-                            <li><a href="">a3</a></li>
-                            <!-- <% for(var i = 0; i < stepsObj.length; i++) { %>
-                                <li class="option"><%= stepsObj[i].context%></li>
-                                <% } %> -->
+                            <li><a href="">a3</a></li> -->
+                            <% for(var i = 0; i < optionObjArray.length; i++) { %>
+                                <li><%= optionObjArray[i].context%></li>
+                                <% } %>
                         </ul>
                     </div>
     
