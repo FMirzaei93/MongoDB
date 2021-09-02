@@ -8,7 +8,6 @@ const dbUrl = 'mongodb+srv://FM93:Liliyomgol6871@cluster0.w5kk9.mongodb.net/Stor
 // var url = "mongodb://localhost:27017/";
 
 
-
 // ************************************ App Config ******************************
 
 app.set('view engine', 'ejs');
@@ -31,20 +30,27 @@ app.get('/', (req, res) => {
 
 
 
+
 app.get('/question', (req, res) => {
 
-    GetData(res, 'main-page.ejs', null);
+    GetData(null).then(result => {
 
-    // res.render('main-page.ejs', {
-    //     data: {
-    //         //questionObj: questionObj,
-    //         // optionObjArray: optionObjArray
-    //     }
-    // });
+        GetData(result[0].id).then(resu => {
+
+            res.render('main-page.ejs', {
+                data: {
+                    parent: result[0],
+                    children: resu
+                }
+            });
+
+        })
+
+    }).catch((err) => {
+        res.redirect('/');
+    });
 
 });
-
-
 // ********************************** Calling The Server *****************************
 
 app.listen(port, () => {
@@ -53,6 +59,11 @@ app.listen(port, () => {
 
 
 // ****************************************  Functions  *******************************
+// GetData(null).then(resu => {
+
+//     console.log(resu);
+// });
+
 
 
 function SaveInitalData() {
@@ -88,6 +99,7 @@ function SaveInitalData() {
         }
     ];
 
+
     MongoClient.connect(dbUrl, {
         useUnifiedTopology: true
     }, (err, client) => {
@@ -104,46 +116,35 @@ function SaveInitalData() {
 
 }
 
-function GetData(res, page, parent_id) {
+async function GetData(parent_id) {
 
-    MongoClient.connect(dbUrl, (err, client) => {
+    try {
+        let con = await MongoClient.connect(dbUrl)
 
-        if (err) return console.error(err);
-
-        const db = client.db('Storydb');
+        const db = con.db('Storydb');
         const collection = db.collection('steps');
-        collection.find({
-                parent_id: parent_id
-            })
+        const p = await collection.find({
+            parent_id: parent_id
+        }).toArray();
 
-            .toArray()
-            .then((results) => {
-                res.render(page, {
-                    stepsObj: results
-                });
+        return p;
 
-            })
-            .catch((error) => {
-                res.redirect('/');
-            });
+    } catch (err) {
+        throw err;
+    }
 
 
+    // .toArray((err, results) => {
+    //     if (err) throw err;
 
-        // .toArray((err, results) => {
-        //     if (err) throw err;
+    //     // console.log(result[0]);
+    //     // results.forEach((value) => {
+    //     //     //console.log(value.context);
+    //     // });
+    // });
 
-        //     // result = results;
-        //     // console.log(result[0]);
-        //     // results.forEach((value) => {
-        //     //     //console.log(value.context);
-        //     //     result.push(value)
-        //     // });
-
-
-        // });
-
-    })
 }
+
 
 function Update() {
 

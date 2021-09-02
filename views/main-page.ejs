@@ -30,15 +30,16 @@
 
             <div id="container">
     
-                    <p id="question"><%= stepsObj[0].context %></p>
+                    <p id="question"><%= data.parent.context %></p>
     
                     <div>
-                        <ul>
-                            <li><a href="">Option number1</a></li>
-                            <li><a href="">Option number2</a></li>
-                            <li><a href="">Option number3</a></li>
-                          
-                        </ul>
+                            <ul>
+
+                                <% for(var i = 0; i< 3; i++){ %>
+                                     <li><a href=""><%= data.children[i].context %></a></li>
+                                     <% } %> 
+                             </ul>
+                      
                     </div>
     
     
