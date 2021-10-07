@@ -30,17 +30,26 @@
 
             <div id="container">
     
-                    <p id="question"><%= data.parent.context %></p>
+                    <p id="question"><%= data.question.context %></p>
     
-                    <div>
+                     <div>
                             <ul>
 
-                                <% for(var i = 0; i< 3; i++){ %>
-                                     <li><a href=""><%= data.children[i].context %></a></li>
+                                <%  for(var i = 0; i< data.children.length ; i++){ 
+
+                                    %>   
+
+                                    <form action="/question" method="POST" >
+                                        <input type="hidden" name="q_id" value= "<%= data.children[i].id %>" >
+                                        <input type="hidden" name="q_context" value="<%= data.children[i].context %>">
+                                        <input type="submit" value="<%= data.children[i].context %>">
+                                    </form>
+                                    
                                      <% } %> 
+
                              </ul>
                       
-                    </div>
+                    </div> 
     
     
             </div>

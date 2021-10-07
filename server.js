@@ -26,31 +26,83 @@ app.use(express.urlencoded({
 
 app.get('/', (req, res) => {
     res.render('start-page.ejs');
+
 });
 
+app.post('/question', (req, res) => {
+
+    var id = req.body.q_id;
+
+    if (id == "null") {
+
+        var parent_id = null;
+
+        GetDataByParentId(parent_id).then(parent_result => {
+
+            GetDataByParentId(parent_result[0].id).then(children_result => {
 
 
+                res.render('main-page.ejs', {
+                    data: {
+                        question: parent_result[0],
+                        children: children_result
+                    }
+                });
 
-app.get('/question', (req, res) => {
+            })
 
-    GetData(null).then(result => {
+        })
+    } else {
 
-        GetData(result[0].id).then(resu => {
+        var node_id = parseInt(id);
+
+        GetDataByParentId(node_id).then(children_result => {
 
             res.render('main-page.ejs', {
                 data: {
-                    parent: result[0],
-                    children: resu
+                    question: {
+                        id: req.body.q_id,
+                        context: req.body.q_context
+                    },
+                    children: children_result
                 }
             });
 
         })
+    }
 
-    }).catch((err) => {
-        res.redirect('/');
-    });
+
+
 
 });
+
+// app.get('/question/:id', (req, res) => {
+
+//     // var id = req.params.id;
+
+//     GetDataByParentId(null).then(result => {
+
+//         GetDataByParentId(result[0].id).then(resu => {
+
+//             res.render('main-page.ejs', {
+//                 data: {
+//                     question: result[0],
+//                     children: resu
+//                 }
+//             });
+
+//         })
+
+//     })
+
+//     // .catch((err) => {
+//     //     res.redirect('/');
+//     // });
+
+// });
+
+
+
 // ********************************** Calling The Server *****************************
 
 app.listen(port, () => {
@@ -116,7 +168,7 @@ function SaveInitalData() {
 
 }
 
-async function GetData(parent_id) {
+async function GetDataByParentId(id) {
 
     try {
         let con = await MongoClient.connect(dbUrl)
@@ -124,7 +176,7 @@ async function GetData(parent_id) {
         const db = con.db('Storydb');
         const collection = db.collection('steps');
         const p = await collection.find({
-            parent_id: parent_id
+            parent_id: id
         }).toArray();
 
         return p;
@@ -144,6 +196,9 @@ async function GetData(parent_id) {
     // });
 
 }
+
+
+
 
 
 function Update() {
