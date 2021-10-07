@@ -114,7 +114,38 @@ main#main-page p {
 }
 
 
-main#main-page ul {
+/* form */
+
+main#main-page form {
+    margin-top: 10px;
+}
+
+main#main-page .btn-option {
+    height: 50px;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: 0 2px 5px 2px rgba(19, 35, 47, 0.425);
+    cursor: pointer;
+    color: rgba(11, 53, 85, 0.9);
+    padding: 0px 40px;
+    align-items: center;
+    border: 1px solid #fff;
+    background-color: #fff;
+    font-size: 14px;
+
+}
+
+main#main-page .btn-option:hover {
+    background-color: #f3f1f1f5;
+    color: #1ab189bd;
+    border: 1px solid rgba(11, 53, 85, 0.767);
+}
+
+
+
+/* Using ul instead of form */
+
+/* main#main-page ul {
     margin-top: 60px;
     list-style: none;
     display: flex;
@@ -148,4 +179,4 @@ main#main-page ul li a:hover {
     background-color: #f3f1f1f5;
     color: #1ab189bd;
     border: 1px solid rgba(11, 53, 85, 0.767);
-}
+} */
