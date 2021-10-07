@@ -29,6 +29,8 @@ app.get('/', (req, res) => {
 
 });
 
+
+
 app.post('/question', (req, res) => {
 
     var id = req.body.q_id;
@@ -71,36 +73,7 @@ app.post('/question', (req, res) => {
         })
     }
 
-
-
-
 });
-
-// app.get('/question/:id', (req, res) => {
-
-//     // var id = req.params.id;
-
-//     GetDataByParentId(null).then(result => {
-
-//         GetDataByParentId(result[0].id).then(resu => {
-
-//             res.render('main-page.ejs', {
-//                 data: {
-//                     question: result[0],
-//                     children: resu
-//                 }
-//             });
-
-//         })
-
-//     })
-
-//     // .catch((err) => {
-//     //     res.redirect('/');
-//     // });
-
-// });
-
 
 
 // ********************************** Calling The Server *****************************
@@ -111,12 +84,6 @@ app.listen(port, () => {
 
 
 // ****************************************  Functions  *******************************
-// GetData(null).then(resu => {
-
-//     console.log(resu);
-// });
-
-
 
 function SaveInitalData() {
     var myobj = [{
@@ -185,21 +152,7 @@ async function GetDataByParentId(id) {
         throw err;
     }
 
-
-    // .toArray((err, results) => {
-    //     if (err) throw err;
-
-    //     // console.log(result[0]);
-    //     // results.forEach((value) => {
-    //     //     //console.log(value.context);
-    //     // });
-    // });
-
 }
-
-
-
-
 
 function Update() {
 
