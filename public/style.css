@@ -141,6 +141,10 @@ main#main-page .btn-option:hover {
     border: 1px solid rgba(11, 53, 85, 0.767);
 }
 
+main#main-page div#container>div {
+    margin-top: 60px;
+    display: flex;
+}
 
 
 /* Using ul instead of form */
