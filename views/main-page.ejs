@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question</title>
     <link rel="stylesheet" href="style.css">
-    <script src="scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/m.js"></script>
 </head>
 <body>
 
@@ -30,9 +31,51 @@
 
             <div id="container">
     
+                <% if (data.question.image!="null"){%>
+
+                <div id="img-holder">
+                    <img id="question-img" src="<%= data.question.image %>" alt="question image">
+                </div>
+                <%}%>
+
+
+                <audio id="myAudio" src="<%= data.question.audio %>"></audio>
+                <%
+console.log(data.question.image);
+
+                %>
+                
+
+                <%
+
+                    if (data.question.audio!="null"){ %>
+                        
+                        <button onclick="myfunc()">play</button>
+
+                   <script>
+                       
+                       function myfunc(){
+                        document.getElementById('myAudio').play();
+                       }
+                   </script>
+
+
+                        
+
+                   <% }
+
+                    else {
+
+                    }
+
+                    %>
+
+
                     <p id="question"><%= data.question.context %></p>
+
+                 
     
-                     <div>
+                     <div id="div-form">
                            
 
                                 <%  for(var i = 0; i< data.children.length ; i++){ 
@@ -42,6 +85,8 @@
                                     <form action="/question" method="POST" >
                                         <input type="hidden" name="q_id" value= "<%= data.children[i].id %>" >
                                         <input type="hidden" name="q_context" value="<%= data.children[i].context %>">
+                                        <input type="hidden" name="q_image" value="<%= data.children[i].image %>">
+                                        <input type="hidden" name="q_audio" value="<%= data.children[i].audio %>">
                                         <input type="submit" value="<%= data.children[i].context %>" class="btn-option">
                                     </form>
                                     
@@ -51,12 +96,10 @@
                       
                     </div> 
     
-    
             </div>
     
         </main>
    
-
 
 </body>
 </html>
