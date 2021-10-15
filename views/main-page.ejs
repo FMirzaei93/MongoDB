@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/m.js"></script>
 </head>
@@ -39,43 +40,30 @@
                 <%}%>
 
 
-                <audio id="myAudio" src="<%= data.question.audio %>"></audio>
-                <%
-console.log(data.question.image);
+                <div id="title-holder">
 
-                %>
-                
+               
 
-                <%
+                     <audio id="myAudio" src="<%= data.question.audio %>"></audio>
 
-                    if (data.question.audio!="null"){ %>
+                     <% if (data.question.audio!="null"){ %>
                         
-                        <button onclick="myfunc()">play</button>
+                        <i onclick="myfunc()" class="far fa-play-circle" id="play-btn"></i>
 
-                   <script>
-                       
-                       function myfunc(){
-                        document.getElementById('myAudio').play();
-                       }
-                   </script>
+                        <script>
+                               function myfunc(){
+                                document.getElementById('myAudio').play();
+                               }
+                        </script>
 
-
-                        
-
-                   <% }
-
-                    else {
-
-                    }
-
-                    %>
+                     <% } %>                   
 
 
-                    <p id="question"><%= data.question.context %></p>
+                          <p id="question"><%= data.question.context %></p>
+                </div>
 
-                 
-    
-                     <div id="div-form">
+
+                    <div id="div-form">
                            
 
                                 <%  for(var i = 0; i< data.children.length ; i++){ 
@@ -91,8 +79,7 @@ console.log(data.question.image);
                                     </form>
                                     
                                      <% } %> 
-
-                          
+                                         
                       
                     </div> 
     

@@ -105,14 +105,33 @@ main#main-page {
     padding-top: 120px;
 }
 
-main#main-page div#img-holder {
+div#img-holder {
     display: flex;
     justify-content: center;
 }
 
-main#main-page img#question-img {
-    width: 150px;
-    height: 150px;
+img#question-img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 20px;
+    margin-top: -50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 2px rgba(19, 35, 47, 0.425);
+
+}
+
+
+div#title-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+i#play-btn {
+    color: #1ab188;
+    font-size: 30px;
+    margin-right: 8px;
 }
 
 main#main-page p {
@@ -123,19 +142,20 @@ main#main-page p {
 }
 
 
+/* main-page form */
 
+main#main-page div#div-form {
+    margin-top: 60px;
+    display: flex;
+}
 
-
-/* form */
-
-main#main-page form {
-    margin-top: 10px;
+main#main-page div#div-form form:not(:last-child) {
+    margin-right: 40px;
 }
 
 main#main-page .btn-option {
     height: 50px;
     border-radius: 5px;
-    margin: 20px;
     box-shadow: 0 2px 5px 2px rgba(19, 35, 47, 0.425);
     cursor: pointer;
     color: rgba(11, 53, 85, 0.9);
@@ -144,7 +164,6 @@ main#main-page .btn-option {
     border: 1px solid #fff;
     background-color: #fff;
     font-size: 14px;
-
 }
 
 main#main-page .btn-option:hover {
@@ -153,10 +172,6 @@ main#main-page .btn-option:hover {
     border: 1px solid rgba(11, 53, 85, 0.767);
 }
 
-main#main-page div#div-form {
-    margin-top: 60px;
-    display: flex;
-}
 
 /* Using ul instead of form */
 

@@ -54,4 +54,6 @@ node.js programs and EJS don't run on the browser, usually it only run on the bu
 ejs is a template language, which means it only controls how the page is rendered, and does nothing to change what happens to the page on the client's browser after it has loaded.
 Means you have no access to the DOM. You can not use syntax that rely on the DOM like document, window, and any other DOM API.
 The best way is to do it is on the script tag (JavaScript) which will be executed on the browser.
+The message of console.log depends on the side (server side(using nodejs and ejs) or client side(using javascript), will be showed
+in different places, the first case, in terminal, and the second case in console part of the browser.
 
