@@ -64,7 +64,9 @@ app.post('/question', (req, res) => {
                 data: {
                     question: {
                         id: req.body.q_id,
-                        context: req.body.q_context
+                        context: req.body.q_context,
+                        image: req.body.q_image,
+                        audio: req.body.q_audio
                     },
                     children: children_result
                 }
