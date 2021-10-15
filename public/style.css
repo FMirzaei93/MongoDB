@@ -105,6 +105,15 @@ main#main-page {
     padding-top: 120px;
 }
 
+main#main-page div#img-holder {
+    display: flex;
+    justify-content: center;
+}
+
+main#main-page img#question-img {
+    width: 150px;
+    height: 150px;
+}
 
 main#main-page p {
     color: white;
@@ -112,6 +121,9 @@ main#main-page p {
     font-weight: bold;
     text-align: center;
 }
+
+
+
 
 
 /* form */
@@ -141,11 +153,10 @@ main#main-page .btn-option:hover {
     border: 1px solid rgba(11, 53, 85, 0.767);
 }
 
-main#main-page div#container>div {
+main#main-page div#div-form {
     margin-top: 60px;
     display: flex;
 }
-
 
 /* Using ul instead of form */
 
